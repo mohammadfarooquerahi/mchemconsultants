@@ -1,0 +1,14 @@
+# OS and system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.tmp
+*.log
+
+# Old intermediate version zips (keep mchemconsultants-pro.zip and mchemconsultants.zip)
+mchemconsultants-v*.zip
+mchemconsultants-theme.zip
+web 1.zip
+web theme sample.zip
+web theme sample/

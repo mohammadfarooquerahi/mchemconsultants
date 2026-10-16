@@ -1,0 +1,215 @@
+/**
+ * Gallery Section Styles - MChem Consultants
+ */
+
+.mchem-gallery-section {
+    padding-block: clamp(4.5rem, 7vw, 7rem);
+    background-color: var(--mchem-bg);
+    color: var(--mchem-text);
+    transition: background-color 0.3s ease;
+}
+
+.mchem-gallery-header {
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.mchem-gallery-header__title {
+    font-family: var(--mchem-font-head, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--mchem-text-heading, var(--mchem-text));
+}
+
+.mchem-gallery-header__dash {
+    color: var(--mchem-primary-blue, #0284c7);
+    font-weight: 400;
+}
+
+.mchem-gallery-header__sub {
+    font-family: var(--mchem-font-body, 'Plus Jakarta Sans', sans-serif);
+    color: var(--mchem-text-muted, #64748b);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.mchem-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.mchem-gallery-item {
+    position: relative;
+    border-radius: 18px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--mchem-bg-card, #0f172a);
+    border: 1px solid var(--mchem-border-card, rgba(255, 255, 255, 0.08));
+    box-shadow: var(--mchem-shadow-card, 0 4px 20px rgba(0, 0, 0, 0.08));
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.mchem-gallery-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--mchem-primary-blue, #0284c7);
+    box-shadow: 0 12px 30px rgba(2, 132, 199, 0.2);
+}
+
+.mchem-gallery-item__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    display: block;
+}
+
+.mchem-gallery-item:hover .mchem-gallery-item__img {
+    transform: scale(1.08);
+}
+
+.mchem-gallery-item__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(6, 16, 31, 0.95) 0%, rgba(6, 16, 31, 0.6) 60%, transparent 100%);
+    color: #ffffff;
+    font-family: var(--mchem-font-head, 'Plus Jakarta Sans', sans-serif);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    pointer-events: none;
+    margin: 0;
+    transition: background 0.3s ease;
+}
+
+.mchem-gallery-item__cat {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #38BDF8;
+    text-transform: uppercase;
+}
+
+.mchem-gallery-item__title {
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #FFFFFF;
+}
+
+.mchem-gallery-item__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mchem-gallery-item:hover .mchem-gallery-item__play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Lightbox Styles */
+.mchem-gallery-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mchem-gallery-lightbox__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(6, 16, 31, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.mchem-gallery-lightbox__content {
+    position: relative;
+    z-index: 100000;
+    width: 90%;
+    max-width: 1100px;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mchem-gallery-lightbox__media {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mchem-gallery-lightbox__media iframe {
+    width: 100%;
+    max-width: 960px;
+    height: 540px;
+    aspect-ratio: 16/9;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mchem-gallery-lightbox__close {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 100001;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+}
+
+.mchem-gallery-lightbox__close:hover {
+    background: #EF4444;
+    border-color: #EF4444;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .mchem-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .mchem-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .mchem-gallery-lightbox__close {
+        top: -3rem;
+        right: 0.5rem;
+    }
+}

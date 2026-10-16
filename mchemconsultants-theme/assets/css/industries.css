@@ -1,0 +1,218 @@
+/**
+ * MChem Consultants - assets/css/industries.css
+ * NIW-matching Curved Fan Deck / Sector Solutions Interactive Arc.
+ */
+
+.mchem-industries-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--mchem-bg);
+  overflow: visible;
+  transition: background 0.3s ease;
+}
+
+.mchem-industries-header {
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto clamp(3rem, 5vw, 4.5rem) auto;
+}
+
+.mchem-industries-header__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-industries-header__pill span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+}
+
+.mchem-industries-header__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0 0 1.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-industries-header__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-industries-header__sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.68;
+  color: var(--mchem-text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* ── Curved Fan Deck ──────────────────────────────────────────────────────── */
+.mchem-fan-deck {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem) auto;
+  padding-block: 1.5rem 2rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.mchem-fan-deck::-webkit-scrollbar { display: none; }
+
+.mchem-fan-deck__track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.2vw, 0.85rem);
+  min-width: max-content;
+  padding-inline: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.mchem-fan-tile {
+  position: relative;
+  width: clamp(84px, 8.5vw, 110px);
+  height: clamp(100px, 11vw, 136px);
+  border-radius: 20px;
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  outline: none;
+  padding: 0.75rem 0.5rem;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: var(--mchem-shadow-card);
+  user-select: none;
+}
+
+/* Gentle Arch Translation */
+.mchem-fan-tile[data-offset="0"]  { transform: translateY(0); z-index: 5; }
+.mchem-fan-tile[data-offset="1"],
+.mchem-fan-tile[data-offset="-1"] { transform: translateY(8px); z-index: 4; }
+.mchem-fan-tile[data-offset="2"],
+.mchem-fan-tile[data-offset="-2"] { transform: translateY(18px); z-index: 3; }
+.mchem-fan-tile[data-offset="3"],
+.mchem-fan-tile[data-offset="-3"] { transform: translateY(28px); z-index: 2; }
+.mchem-fan-tile[data-offset="4"],
+.mchem-fan-tile[data-offset="-4"] { transform: translateY(38px); z-index: 1; }
+
+.mchem-fan-tile__icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--mchem-text-muted);
+  transition: all 0.3s ease;
+}
+
+.mchem-fan-tile__pill {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mchem-text-heading);
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.25s ease;
+  pointer-events: none;
+  box-shadow: var(--mchem-shadow-sm);
+}
+
+.mchem-fan-tile:hover {
+  background: var(--mchem-bg-elevated);
+  border-color: var(--mchem-primary-blue);
+}
+.mchem-fan-tile:hover .mchem-fan-tile__icon-wrap {
+  color: var(--mchem-primary-blue);
+}
+.mchem-fan-tile:hover .mchem-fan-tile__pill {
+  opacity: 1;
+}
+
+.mchem-fan-tile.is-active {
+  background: var(--mchem-bg-card);
+  border: 2px solid var(--mchem-primary-blue);
+  box-shadow: var(--mchem-shadow-elevated), var(--mchem-shadow-glow);
+  z-index: 10 !important;
+  transform: translateY(-4px) scale(1.1) !important;
+}
+
+.mchem-fan-tile.is-active .mchem-fan-tile__icon-wrap {
+  color: var(--mchem-primary-blue);
+  transform: scale(1.08);
+}
+
+.mchem-fan-tile.is-active .mchem-fan-tile__pill {
+  opacity: 1;
+  background: var(--mchem-bg-card);
+  border-color: var(--mchem-primary-blue);
+  color: var(--mchem-primary-blue);
+}
+
+/* ── Dynamic Info Panel ──────────────────────────────────────────────────── */
+.mchem-industry-info {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 20px;
+  box-shadow: var(--mchem-shadow-card);
+}
+
+.mchem-industry-info__category {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.mchem-industry-info__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--mchem-text);
+  margin: 0 0 1.5rem 0;
+}
+
+.mchem-industry-info__cta {
+  display: flex;
+  justify-content: center;
+}

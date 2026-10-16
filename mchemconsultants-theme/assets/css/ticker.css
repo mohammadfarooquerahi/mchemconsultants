@@ -1,0 +1,172 @@
+/**
+ * MChem Consultants - assets/css/ticker.css
+ * Infinite-scroll moving service cards ticker (Light/Dark Theme Adaptive).
+ */
+
+.mchem-ticker-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  background: var(--mchem-bg);
+  transition: background 0.3s ease;
+}
+
+/* Edge gradient fade masks */
+.mchem-ticker-section::before,
+.mchem-ticker-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 8vw, 120px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mchem-ticker-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--mchem-bg), transparent);
+}
+
+.mchem-ticker-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--mchem-bg), transparent);
+}
+
+/* ── Ticker Row Container ─────────────────────────────────────────────────── */
+.mchem-ticker {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  margin-bottom: 1.15rem;
+}
+.mchem-ticker:last-child {
+  margin-bottom: 0;
+}
+
+.mchem-ticker__track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.mchem-ticker[data-direction="left"] .mchem-ticker__track {
+  animation: mchem-scroll-left 45s linear infinite;
+}
+
+.mchem-ticker[data-direction="right"] .mchem-ticker__track {
+  animation: mchem-scroll-right 45s linear infinite;
+}
+
+.mchem-ticker:hover .mchem-ticker__track {
+  animation-play-state: paused;
+}
+
+@keyframes mchem-scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes mchem-scroll-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Ticker Card Item ─────────────────────────────────────────────────────── */
+.mchem-ticker__card {
+  flex: 0 0 clamp(280px, 25vw, 340px);
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 16px;
+  padding: 1.1rem 1.35rem;
+  box-shadow: var(--mchem-shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mchem-ticker__card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mchem-primary-blue);
+  box-shadow: var(--mchem-shadow-elevated);
+}
+
+.mchem-ticker__card-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mchem-ticker__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--mchem-bg-elevated);
+  border: 1px solid var(--mchem-border);
+  color: var(--mchem-primary-blue);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: var(--mchem-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.mchem-ticker__card:hover .mchem-ticker__icon-wrap {
+  background: var(--mchem-primary-blue);
+  color: #FFFFFF;
+  border-color: var(--mchem-primary-blue);
+}
+
+.mchem-ticker__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.mchem-ticker__number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--mchem-text-faint);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.15rem 0;
+}
+
+.mchem-ticker__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--mchem-text-heading);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 0.15rem 0;
+}
+
+.mchem-ticker__software {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--mchem-primary-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.mchem-ticker__outcome {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.mchem-ticker__outcome-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #059669;
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  margin: 0;
+}

@@ -1,0 +1,503 @@
+/**
+ * MChem Consultants - assets/css/projects.css
+ * NIW-matching Bento Projects & Engineering Case Studies (Light & Dark Theme Adaptive).
+ */
+
+.mchem-projects-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--mchem-bg);
+  transition: background 0.3s ease;
+}
+
+/* ── Section Header ──────────────────────────────────────────────────────── */
+.mchem-projects-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(3rem, 5vw, 4.5rem) auto;
+}
+
+.mchem-projects-header__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-projects-header__pill span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+}
+
+.mchem-projects-header__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0 0 1.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-projects-header__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-projects-header__sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.68;
+  color: var(--mchem-text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* ── Project Showcase Bento Stack ─────────────────────────────────────────── */
+.mchem-projects-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 4vw, 3.75rem);
+}
+
+.mchem-project-panel {
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--mchem-shadow-card);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mchem-project-panel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: var(--mchem-shadow-elevated);
+}
+
+.mchem-project-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 960px) {
+  .mchem-project-panel__grid {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+/* ── Left Column: Narrative ───────────────────────────────────────────────── */
+.mchem-project-panel__narrative {
+  padding: clamp(1.85rem, 3.5vw, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mchem-project-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-project-panel__category {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+}
+
+.mchem-project-panel__num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--mchem-text-faint);
+}
+
+.mchem-project-panel__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--mchem-text-heading);
+  margin: 0 0 1rem 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-project-panel__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.68;
+  color: var(--mchem-text-muted);
+  margin: 0 0 1.5rem 0;
+  transition: color 0.3s ease;
+}
+
+/* Tags */
+.mchem-project-panel__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.mchem-project-panel__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  background: var(--mchem-bg-elevated);
+  border: 1px solid var(--mchem-border);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--mchem-text);
+}
+
+/* Feature Accordions (<details>/<summary>) */
+.mchem-project-panel__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.mchem-project-panel__accordion {
+  border: 1px solid var(--mchem-border);
+  border-radius: 14px;
+  background: var(--mchem-bg-elevated);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.mchem-project-panel__accordion[open] {
+  border-color: rgba(2, 132, 199, 0.35);
+  background: var(--mchem-bg-card);
+}
+
+.mchem-project-panel__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1.15rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--mchem-text-heading);
+  cursor: pointer;
+  user-select: none;
+}
+.mchem-project-panel__summary::-webkit-details-marker { display: none; }
+
+.mchem-project-panel__chevron {
+  color: var(--mchem-primary-blue);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.mchem-project-panel__accordion[open] .mchem-project-panel__chevron {
+  transform: rotate(180deg);
+}
+
+.mchem-project-panel__details {
+  padding: 0 1.15rem 1rem 1.15rem;
+}
+
+.mchem-project-panel__details p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.62;
+  color: var(--mchem-text-muted);
+  margin: 0;
+}
+
+/* Delivery Badge */
+.mchem-project-panel__delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--mchem-border);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+}
+
+/* ── Right Column: Schematic Visual Dashboard ─────────────────────────────── */
+.mchem-project-panel__visual {
+  background: var(--mchem-bg-subtle);
+  border-left: 1px solid var(--mchem-border);
+  padding: clamp(1.85rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mchem-project-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mchem-project-dash__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mchem-project-dash__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--mchem-text-heading);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.mchem-project-dash__pulse-line {
+  height: 2px;
+  width: 60px;
+  background: var(--mchem-primary-gradient);
+  border-radius: 9999px;
+}
+
+/* 2x2 Sub-Cards Grid */
+.mchem-project-dash__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.mchem-project-dash__card {
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+  box-shadow: var(--mchem-shadow-sm);
+}
+
+.mchem-project-dash__card-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mchem-text-faint);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* Card 1: Stream Lines */
+.mchem-project-dash__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mchem-project-dash__line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mchem-project-dash__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.mchem-project-dash__dot--gold { background: #C9982A; }
+.mchem-project-dash__dot--cyan { background: var(--mchem-primary-blue); }
+
+.mchem-project-dash__bar {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--mchem-border);
+}
+.mchem-project-dash__bar--long  { width: 85%; background: var(--mchem-primary-blue); opacity: 0.8; }
+.mchem-project-dash__bar--mid   { width: 60%; background: #0D9488; opacity: 0.8; }
+.mchem-project-dash__bar--short { width: 40%; background: #C9982A; opacity: 0.8; }
+
+/* Card 2: Map Grid */
+.mchem-project-dash__map {
+  position: relative;
+  height: 50px;
+  border-radius: 8px;
+  background: var(--mchem-bg-elevated);
+  border: 1px dashed var(--mchem-border);
+  display: grid;
+  place-items: center;
+}
+
+.mchem-project-dash__pin {
+  color: var(--mchem-primary-blue);
+  animation: mchem-float 2.5s ease-in-out infinite;
+}
+
+@keyframes mchem-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Card 3: Timeline */
+.mchem-project-dash__timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+}
+
+.mchem-project-dash__timeline-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--mchem-border);
+  z-index: 0;
+}
+
+.mchem-project-dash__t-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mchem-bg-card);
+  border: 2px solid var(--mchem-border);
+  position: relative;
+  z-index: 1;
+}
+
+.mchem-project-dash__t-dot--active {
+  background: var(--mchem-primary-blue);
+  border-color: var(--mchem-primary-blue);
+  box-shadow: 0 0 8px var(--mchem-primary-blue);
+}
+
+/* Card 4: Bars */
+.mchem-project-dash__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  height: 45px;
+}
+
+.mchem-project-dash__col {
+  flex: 1;
+  background: var(--mchem-border);
+  border-radius: 3px;
+}
+.mchem-project-dash__col--gold {
+  background: var(--mchem-primary-blue);
+}
+
+/* Dashboard Footer & Stats Row */
+.mchem-project-dash__footer {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--mchem-border);
+}
+
+.mchem-project-dash__footer-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--mchem-text-muted);
+  margin: 0 0 1.25rem 0;
+}
+
+.mchem-project-dash__stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.mchem-project-dash__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.mchem-project-dash__stat-val {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--mchem-primary-blue);
+  line-height: 1.1;
+}
+
+.mchem-project-dash__stat-lbl {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--mchem-text-faint);
+  text-transform: uppercase;
+}
+
+/* ── More Projects Notice ────────────────────────────────────────────────── */
+.mchem-projects-more {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.mchem-projects-more__line {
+  width: 60px;
+  height: 2px;
+  background: var(--mchem-border);
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+}
+
+.mchem-projects-more__text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--mchem-text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-projects-more__text strong {
+  color: var(--mchem-text-heading);
+  font-weight: 700;
+}
+
+.mchem-projects-more__text a {
+  color: var(--mchem-primary-blue);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.mchem-projects-more__text a:hover {
+  border-bottom-color: var(--mchem-primary-blue);
+}

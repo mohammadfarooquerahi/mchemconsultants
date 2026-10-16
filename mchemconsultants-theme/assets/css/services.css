@@ -1,0 +1,276 @@
+/**
+ * MChem Consultants - assets/css/services.css
+ * NIW-matching Services Section (Light Mode Default & Dark Mode Adaptive).
+ */
+
+.mchem-services-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--mchem-bg);
+  transition: background 0.3s ease;
+}
+
+/* ── Split Section Header ─────────────────────────────────────────────────── */
+.mchem-services-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+@media (min-width: 900px) {
+  .mchem-services-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .mchem-services-header__left {
+    max-width: 560px;
+  }
+  .mchem-services-header__right {
+    max-width: 440px;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.mchem-services-header__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-services-header__pill span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+}
+
+.mchem-services-header__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-services-header__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-services-header__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.68;
+  color: var(--mchem-text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* ── 3-Column Interactive Cards Grid ──────────────────────────────────────── */
+.mchem-services-cards__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .mchem-services-cards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mchem-services-cards__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Single Service Card ─────────────────────────────────────────────────── */
+.mchem-niw-card {
+  position: relative;
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 28px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+  overflow: hidden;
+  box-shadow: var(--mchem-shadow-card);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mchem-niw-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--mchem-primary-blue);
+  box-shadow: var(--mchem-shadow-elevated), var(--mchem-shadow-glow);
+}
+
+.mchem-niw-card--active {
+  border-color: rgba(2, 132, 199, 0.4);
+}
+
+/* Concentric arc decoration lines */
+.mchem-niw-card__arcs {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mchem-niw-card__arc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--mchem-border);
+}
+
+.mchem-niw-card__arc--2 {
+  inset: 30px;
+}
+
+/* Card Top: Icon & Number */
+.mchem-niw-card__top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.mchem-niw-card__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--mchem-bg-elevated);
+  border: 1px solid var(--mchem-border);
+  display: grid;
+  place-items: center;
+  color: var(--mchem-primary-blue);
+  box-shadow: var(--mchem-shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.mchem-niw-card:hover .mchem-niw-card__icon-box {
+  background: var(--mchem-primary-blue);
+  color: #FFFFFF;
+  border-color: var(--mchem-primary-blue);
+}
+
+.mchem-niw-card__num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--mchem-text-faint);
+  letter-spacing: -0.02em;
+}
+
+/* Card Body */
+.mchem-niw-card__body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mchem-niw-card__category {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mchem-text-faint);
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.mchem-niw-card__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--mchem-text-heading);
+  margin: 0 0 1rem 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-niw-card__text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--mchem-text-muted);
+  margin: 0 0 2rem 0;
+  transition: color 0.3s ease;
+}
+
+/* Card Footer: Explore Service & Arrow Circle */
+.mchem-niw-card__footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--mchem-border);
+}
+
+.mchem-niw-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--mchem-text-heading);
+  transition: color 0.2s ease;
+}
+
+.mchem-niw-card__link-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mchem-text-muted);
+  transition: color 0.2s ease;
+}
+
+.mchem-niw-card:hover .mchem-niw-card__link-text {
+  color: var(--mchem-primary-blue);
+}
+
+.mchem-niw-card__btn-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--mchem-bg-elevated);
+  border: 1px solid var(--mchem-border);
+  display: grid;
+  place-items: center;
+  color: var(--mchem-text-heading);
+  transition: all 0.25s ease;
+}
+
+.mchem-niw-card:hover .mchem-niw-card__btn-circle {
+  background: var(--mchem-primary-blue);
+  color: #FFFFFF;
+  border-color: var(--mchem-primary-blue);
+  transform: scale(1.08);
+}

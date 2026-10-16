@@ -1,0 +1,306 @@
+/**
+ * MChem Consultants - assets/css/about.css
+ * About MChem Consultants & Our Story Section.
+ */
+
+.mchem-about-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--mchem-bg);
+  transition: background 0.3s ease;
+}
+
+/* ── Split Header ─────────────────────────────────────────────────────────── */
+.mchem-about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+@media (min-width: 900px) {
+  .mchem-about-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .mchem-about-header__left {
+    max-width: 540px;
+  }
+  .mchem-about-header__right {
+    max-width: 500px;
+  }
+}
+
+.mchem-about-header__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-about-header__pill span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+}
+
+.mchem-about-header__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-about-header__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-about-header__mission-box {
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-left: 4px solid var(--mchem-primary-blue);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--mchem-shadow-sm);
+}
+
+.mchem-about-header__mission-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--mchem-primary-blue);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.mchem-about-header__mission-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--mchem-text);
+  margin: 0;
+}
+
+/* ── Bento Grid Layout ────────────────────────────────────────────────────── */
+.mchem-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .mchem-about-grid {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .mchem-about-card--main {
+    grid-row: span 3;
+  }
+}
+
+/* ── Common Card Styles ──────────────────────────────────────────────────── */
+.mchem-about-card {
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 24px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  box-shadow: var(--mchem-shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mchem-about-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--mchem-primary-blue);
+  box-shadow: var(--mchem-shadow-elevated);
+}
+
+/* ── Main Story Card ─────────────────────────────────────────────────────── */
+.mchem-about-card--main {
+  background: var(--mchem-bg-card);
+}
+
+.mchem-about-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.mchem-about-card__badge {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #B45309;
+  background: rgba(201, 152, 42, 0.12);
+  border: 1px solid rgba(201, 152, 42, 0.3);
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+}
+
+[data-theme="dark"] .mchem-about-card__badge {
+  color: #FBBF24;
+}
+
+.mchem-about-card__num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--mchem-text-faint);
+}
+
+.mchem-about-card__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--mchem-text-heading);
+  margin-bottom: 1.25rem;
+}
+
+.mchem-about-card__lead {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--mchem-text);
+  margin-bottom: 2rem;
+}
+
+.mchem-about-card__lead strong {
+  color: var(--mchem-text-heading);
+  font-weight: 700;
+}
+
+/* Affiliations */
+.mchem-about-affils {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: var(--mchem-bg-elevated);
+  border: 1px solid var(--mchem-border);
+  border-radius: 16px;
+}
+
+.mchem-about-affil {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.mchem-about-affil__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border);
+  display: grid;
+  place-items: center;
+  color: var(--mchem-primary-blue);
+  flex-shrink: 0;
+}
+
+.mchem-about-affil__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mchem-about-affil__info strong {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--mchem-text-heading);
+}
+
+.mchem-about-affil__info span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  color: var(--mchem-text-muted);
+}
+
+.mchem-about-card__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* ── Side Pillar Cards ───────────────────────────────────────────────────── */
+.mchem-about-card--pillar {
+  padding: 1.75rem;
+}
+
+.mchem-about-pillar__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-about-pillar__icon--blue {
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--mchem-primary-blue);
+}
+
+.mchem-about-pillar__icon--cyan {
+  background: rgba(13, 148, 136, 0.1);
+  color: #0D9488;
+}
+
+.mchem-about-pillar__icon--teal {
+  background: rgba(201, 152, 42, 0.12);
+  color: #B45309;
+}
+
+[data-theme="dark"] .mchem-about-pillar__icon--teal {
+  color: #FBBF24;
+}
+
+.mchem-about-pillar__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--mchem-text-heading);
+  margin-bottom: 0.6rem;
+}
+
+.mchem-about-pillar__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--mchem-text-muted);
+  margin-bottom: 1rem;
+}
+
+.mchem-about-pillar__tag {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--mchem-text-faint);
+  text-transform: uppercase;
+}

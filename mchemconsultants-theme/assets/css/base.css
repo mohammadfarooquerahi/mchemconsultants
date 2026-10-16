@@ -1,0 +1,218 @@
+/**
+ * MChem Consultants - assets/css/base.css
+ * Comprehensive Design Tokens & Light/Dark Theme Engine (Light Mode Default).
+ */
+
+/* ── Light Mode (Default) ─────────────────────────────────────────────────── */
+:root,
+html[data-theme="light"],
+body[data-theme="light"] {
+  --mchem-bg:               #F8FAFC;
+  --mchem-bg-subtle:        #F1F5F9;
+  --mchem-bg-surface:       #FFFFFF;
+  --mchem-bg-card:          #FFFFFF;
+  --mchem-bg-elevated:      #F8FAFC;
+
+  --mchem-text:             #0F172A;
+  --mchem-text-heading:     #091224;
+  --mchem-text-muted:       #475569;
+  --mchem-text-faint:       #64748B;
+
+  --mchem-border:           rgba(15, 23, 42, 0.08);
+  --mchem-border-card:      rgba(15, 23, 42, 0.08);
+  --mchem-border-subtle:    rgba(15, 23, 42, 0.05);
+
+  --mchem-island-bg:        rgba(255, 255, 255, 0.90);
+  --mchem-island-border:    rgba(15, 23, 42, 0.10);
+  --mchem-island-text:      #0F172A;
+  --mchem-island-btn-bg:    rgba(15, 23, 42, 0.04);
+  --mchem-island-btn-border:rgba(15, 23, 42, 0.10);
+  --mchem-island-btn-text:  #0F172A;
+
+  --mchem-shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.04);
+  --mchem-shadow-card:      0 8px 24px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --mchem-shadow-elevated:  0 20px 45px rgba(15, 23, 42, 0.08);
+  --mchem-shadow-glow:      0 0 30px rgba(2, 132, 199, 0.12);
+
+  --mchem-primary-blue:     #0284C7;
+  --mchem-primary-blue-dark:#0369A1;
+  --mchem-primary-gradient: linear-gradient(135deg, #0284C7 0%, #0D9488 100%);
+  --mchem-highlight:        #0284C7;
+
+  --mchem-gold:             #B45309;
+  --mchem-gold-dim:         rgba(201, 152, 42, 0.12);
+  --mchem-border-gold:      rgba(201, 152, 42, 0.25);
+  --mchem-teal:             #0D9488;
+
+  --mchem-hero-glow:        radial-gradient(ellipse at center, rgba(2, 132, 199, 0.12) 0%, rgba(201, 152, 42, 0.06) 45%, transparent 70%);
+  --mchem-grid-line:        rgba(15, 23, 42, 0.03);
+
+  --mchem-glass-btn:        rgba(15, 23, 42, 0.04);
+  --mchem-glass-btn-border: rgba(15, 23, 42, 0.12);
+  --mchem-glass-btn-text:   #0F172A;
+
+  --mchem-input-bg:         #FFFFFF;
+  --mchem-input-border:     rgba(15, 23, 42, 0.15);
+  --mchem-input-text:       #0F172A;
+  --mchem-input-placeholder:#94A3B8;
+
+  --mchem-ticker-card-bg:   #FFFFFF;
+  --mchem-ticker-border:    rgba(15, 23, 42, 0.08);
+
+  /* Radius & Spacing */
+  --mchem-radius-sm:        8px;
+  --mchem-radius-md:        14px;
+  --mchem-radius-lg:        20px;
+  --mchem-radius-xl:        28px;
+  --mchem-radius-full:      9999px;
+
+  --mchem-font-body:        'Inter', system-ui, -apple-system, sans-serif;
+  --mchem-font-head:        'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --mchem-font-serif:       'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+  --mchem-container-w:      1200px;
+  --mchem-container-px:     clamp(1.25rem, 5vw, 2.5rem);
+  --mchem-ease:             cubic-bezier(0.22, 1, 0.36, 1);
+  --mchem-transition:       0.3s var(--mchem-ease);
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+[data-theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  --mchem-bg:               #06101F;
+  --mchem-bg-subtle:        #0B1A34;
+  --mchem-bg-surface:       #0B1A34;
+  --mchem-bg-card:          #0B1A34;
+  --mchem-bg-elevated:      #102245;
+
+  --mchem-text:             #E8EDF5;
+  --mchem-text-heading:     #F8FAFC;
+  --mchem-text-muted:       #94A3B8;
+  --mchem-text-faint:       rgba(232, 237, 245, 0.45);
+
+  --mchem-border:           rgba(255, 255, 255, 0.08);
+  --mchem-border-card:      rgba(255, 255, 255, 0.08);
+  --mchem-border-subtle:    rgba(255, 255, 255, 0.04);
+
+  --mchem-island-bg:        rgba(11, 26, 52, 0.92);
+  --mchem-island-border:    rgba(255, 255, 255, 0.12);
+  --mchem-island-text:      #E2E8F0;
+  --mchem-island-btn-bg:    rgba(255, 255, 255, 0.05);
+  --mchem-island-btn-border:rgba(255, 255, 255, 0.10);
+  --mchem-island-btn-text:  #E2E8F0;
+
+  --mchem-shadow-sm:        0 4px 16px rgba(0, 0, 0, 0.25);
+  --mchem-shadow-card:      0 16px 40px rgba(0, 0, 0, 0.4);
+  --mchem-shadow-elevated:  0 24px 70px rgba(0, 0, 0, 0.55);
+  --mchem-shadow-glow:      0 0 32px rgba(56, 189, 248, 0.2);
+
+  --mchem-primary-blue:     #38BDF8;
+  --mchem-primary-blue-dark:#0284C7;
+  --mchem-primary-gradient: linear-gradient(135deg, #38BDF8 0%, #2DD4BF 100%);
+  --mchem-highlight:        #38BDF8;
+
+  --mchem-gold:             #C9982A;
+  --mchem-gold-dim:         rgba(201, 152, 42, 0.18);
+  --mchem-border-gold:      rgba(201, 152, 42, 0.25);
+  --mchem-teal:             #0EA5A0;
+
+  --mchem-hero-glow:        radial-gradient(ellipse at center, rgba(56, 189, 248, 0.15) 0%, rgba(201, 152, 42, 0.08) 45%, transparent 70%);
+  --mchem-grid-line:        rgba(255, 255, 255, 0.02);
+
+  --mchem-glass-btn:        rgba(255, 255, 255, 0.05);
+  --mchem-glass-btn-border: rgba(255, 255, 255, 0.14);
+  --mchem-glass-btn-text:   #F8FAFC;
+
+  --mchem-input-bg:         rgba(6, 16, 31, 0.7);
+  --mchem-input-border:     rgba(255, 255, 255, 0.12);
+  --mchem-input-text:       #F8FAFC;
+  --mchem-input-placeholder:#64748B;
+
+  --mchem-ticker-card-bg:   #0B1A34;
+  --mchem-ticker-border:    rgba(255, 255, 255, 0.08);
+}
+
+/* ── Reset & Global Typography ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: 16px;
+  background-color: var(--mchem-bg);
+  color: var(--mchem-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.mchem-body {
+  font-family: var(--mchem-font-body);
+  background-color: var(--mchem-bg);
+  color: var(--mchem-text);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mchem-container {
+  width: 100%;
+  max-width: var(--mchem-container-w);
+  margin-inline: auto;
+  padding-inline: var(--mchem-container-px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--mchem-font-head);
+  color: var(--mchem-text-heading);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+img, svg { display: block; }
+img { max-width: 100%; height: auto; }
+ul, ol { list-style: none; }
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.mchem-main {
+  outline: none;
+  background-color: var(--mchem-bg);
+  transition: background-color 0.3s ease;
+}
+
+/* ── Entry Animations ─────────────────────────────────────────────────────── */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--mchem-ease), transform 0.6s var(--mchem-ease);
+}
+[data-animate="fade-up"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-delay="100"] { transition-delay: 100ms; }
+[data-delay="150"] { transition-delay: 150ms; }
+[data-delay="200"] { transition-delay: 200ms; }
+[data-delay="300"] { transition-delay: 300ms; }

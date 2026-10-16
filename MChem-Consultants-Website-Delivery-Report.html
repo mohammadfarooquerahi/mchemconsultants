@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MChem Consultants - Website Delivery Dossier & Client Manual</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 16mm 16mm 16mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  
+  /* ── Header / Cover ─────────────────────────────────────────────────────── */
+  .cover {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 4px solid #0284c7;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #bae6fd;
+    width: fit-content;
+  }
+  .cover-title {
+    font-size: 28pt;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .cover-title span {
+    color: #0284c7;
+  }
+  .cover-sub {
+    font-size: 13pt;
+    color: #475569;
+    margin-bottom: 3rem;
+    max-width: 650px;
+    line-height: 1.45;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .meta-label {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.05em;
+  }
+  .meta-val {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .meta-val a {
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  /* ── Content Elements ──────────────────────────────────────────────────── */
+  .section-header {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.6rem;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-tag {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #0284c7;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  h2 {
+    font-size: 17pt;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.015em;
+  }
+  h3 {
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin-bottom: 0.75rem;
+    color: #334155;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem 0;
+    font-size: 9pt;
+  }
+  th, td {
+    padding: 8px 11px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  /* Cards & Callouts */
+  .callout {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+  }
+  .callout--warn {
+    background: #fffbeb;
+    border-left-color: #d97706;
+  }
+  .callout--info {
+    background: #f0f9ff;
+    border-left-color: #0284c7;
+  }
+  .callout strong {
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .step-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .step-number {
+    display: inline-block;
+    background: #0284c7;
+    color: #ffffff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    font-size: 9pt;
+    font-weight: 800;
+    margin-right: 0.5rem;
+  }
+
+  ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  li {
+    margin-bottom: 0.35rem;
+    color: #334155;
+  }
+  code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 8.5pt;
+    color: #0369a1;
+  }
+  .badge-success {
+    display: inline-block;
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 700;
+    font-size: 7.5pt;
+    padding: 2px 8px;
+    border-radius: 9999px;
+  }
+  
+  .footer-note {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8pt;
+    color: #94a3b8;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     COVER PAGE
+     ══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">Official Project Handover Dossier · September 2026</div>
+  <h1 class="cover-title">
+    MChem Consultants<br>
+    <span>Website Delivery & Operations Manual</span>
+  </h1>
+  <p class="cover-sub">
+    Comprehensive Technical Architecture, Feature Delivery Matrix, Content Management Guide & Google Search Resolution Documentation for MChem Consultants.
+  </p>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <span class="meta-label">Client Organization</span>
+      <span class="meta-val">MChem Consultants</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Institutional Affiliation</span>
+      <span class="meta-val">Business Incubation Center (BIC), MUET Jamshoro</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Client Leadership Contact</span>
+      <span class="meta-val">Engr. Muhsin Ali (Founder & Managing Director)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Official Contact Coordinates</span>
+      <span class="meta-val">+92 332 0386271 · mchemconsultants2@gmail.com</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Live Production URL</span>
+      <span class="meta-val"><a href="https://mchemconsultants.com">https://mchemconsultants.com</a></span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Lead Developer</span>
+      <span class="meta-val">Mohammad Farooque</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Deliverable Package</span>
+      <span class="meta-val"><code>mchemconsultants-pro.zip</code> (Version 32.0.0)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Project Status</span>
+      <span class="meta-val"><span class="badge-success">100% COMPLETE & VERIFIED</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     EXECUTIVE SUMMARY & SYSTEM HIGHLIGHTS
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="section-header">
+  <span class="section-tag">Section 01</span>
+  <h2>Executive Summary & System Overview</h2>
+</div>
+
+<p>
+  <strong>MChem Consultants</strong> has been delivered as an enterprise-grade, bespoke WordPress digital platform engineered specifically for chemical engineering, process simulation, HAZOP safety studies, and industrial plant design consultancy.
+</p>
+<p>
+  The platform follows the world-class <strong>NIW (niwnet.com) editorial design language</strong>, pairing sleek dark/light dual-mode aesthetics with high-performance responsive engineering. The codebase is 100% proprietary, containing 63 clean files, zero third-party bloatware, zero-BOM millisecond execution, and complete autonomous content management capability through the WordPress dashboard.
+</p>
+
+<div class="callout callout--info">
+  <strong>Key Architectural Milestones Delivered:</strong>
+  <ul>
+    <li><strong>Dual Theme Switcher</strong>: Light Mode (Default) and Dark Mode Toggle with zero-flicker reload.</li>
+    <li><strong>High-Headroom Ambient Hero Video</strong>: Looping engineering background video with programmatic autoplay across all browsers and protective contrast gradients.</li>
+    <li><strong>Dual Lead Generation Dispatch</strong>: Consultation form triggers an instant WhatsApp chat with prefilled parameters while simultaneously dispatching a complete HTML email and file attachment.</li>
+    <li><strong>Smart Email Redirection Engine</strong>: Bypasses desktop mail client errors by directly opening Gmail Web Composer on desktop and native mail apps on mobile.</li>
+    <li><strong>Automated HTTP 410 Gone SEO Purge</strong>: Permanently clears legacy dummy/spam URLs from Google Search indexing within 24–48 hours.</li>
+    <li><strong>100% Client Dashboard Autonomy</strong>: Full control to edit text, upload photos, manage case studies, update team members, and add client reviews.</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MASTER FEATURE DELIVERY MATRIX
+     ══════════════════════════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="section-tag">Section 02</span>
+  <h2>Master Feature Delivery Matrix</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 28%;">Module / Feature</th>
+      <th style="width: 18%;">Status</th>
+      <th>Implementation & Delivery Scope</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>2s Brand Intro Splash</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Smooth 2.0s reveal overlay with rotating glowing logo, official tagline, and animated progress bar with 60fps auto-dismiss.</td>
+    </tr>
+    <tr>
+      <td><strong>Floating Island Navbar</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Fixed island navbar featuring enlarged logo, bold capital wordmark <code>MCHEM CONSULTANTS</code>, Email Us action pill, theme switcher, and mobile drawer.</td>
+    </tr>
+    <tr>
+      <td><strong>Hero Section & Looping Video</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Deep headroom layout with <code>bgvideomchem.mp4</code> autoplay loop, balanced ambient overlay (0.32 light / 0.36 dark), and official tagline.</td>
+    </tr>
+    <tr>
+      <td><strong>About & Our Story</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Bento card layout + standalone page (<code>page-about.php</code>) highlighting BIC MUET incubation, official mission statement, and official BIC logo badge.</td>
+    </tr>
+    <tr>
+      <td><strong>Capabilities Ticker</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Infinite moving ticker; replaced all Aspen HYSYS branding with <em>"Simulation and Modeling"</em> as requested by the client.</td>
+    </tr>
+    <tr>
+      <td><strong>6 Core Engineering Services</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Interactive bento cards for Simulation & Modeling, Sustainable Solutions, HAZOP Risk Studies, Plant Design, Energy Recovery, and CPD Training.</td>
+    </tr>
+    <tr>
+      <td><strong>Projects & Case Studies</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Detailed case study bento dashboards + client-requested notice: <em>"Displaying 3 of our 20+ executed industrial assignments."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Photo & Video Gallery</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>3-column responsive grid with authentic chemical engineering imagery and full-screen lightbox modal with ESC / backdrop dismiss.</td>
+    </tr>
+    <tr>
+      <td><strong>Curated Industries Fan Deck</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Exclusively displays the 4 selected sectors: <strong>Oil & Gas, Chemical, Textile, and Academic</strong> with dynamic scope inspection.</td>
+    </tr>
+    <tr>
+      <td><strong>Team Carousel</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Unclipped squircle avatar cards for all 5 team members with dual contact: direct WhatsApp and direct Email buttons on every card.</td>
+    </tr>
+    <tr>
+      <td><strong>Client Reviews & Testimonials</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>5.0-star rated reviews section featuring verified endorsements from plant managers at SSGC, Lucky Cement, Indus Textile, and QUEST.</td>
+    </tr>
+    <tr>
+      <td><strong>Consultation Booking Form</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Searchable country code selector (30+ countries), drag-and-drop file upload zone (up to 10MB), and dual instant dispatch (WhatsApp + Email).</td>
+    </tr>
+    <tr>
+      <td><strong>Dual Floating Contact Dock</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Fixed bottom-right dock featuring <strong>✉️ Email Us</strong> and <strong>💬 WhatsApp</strong> side-by-side with guaranteed webmail redirection.</td>
+    </tr>
+    <tr>
+      <td><strong>Footer Directory & Credits</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Full company directory, Google Maps location, official BIC logo, and developer credit with 5% default opacity and 10% on hover.</td>
+    </tr>
+    <tr>
+      <td><strong>Enterprise SEO & Schema</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>JSON-LD <code>ProfessionalService</code> rich snippets, OpenGraph social sharing preview, keyword tags, and automated 410 URL purge.</td>
+    </tr>
+    <tr>
+      <td><strong>Live Chat & AI (Tidio)</strong></td>
+      <td><span class="badge-success">100% Complete</span></td>
+      <td>Built-in Customizer control allowing instant activation of Tidio chat and AI bot via project key.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CLIENT MANAGEMENT MANUAL
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="section-header">
+  <span class="section-tag">Section 03</span>
+  <h2>Client Administration & Content Management Guide</h2>
+</div>
+
+<p>
+  The MChem platform is built for non-technical administrators. The client can edit every piece of text, upload project photos, and manage inquiries directly from the WordPress Admin Dashboard.
+</p>
+
+<div class="step-box">
+  <h3><span class="step-number">1</span>Editing Hero Text, Mission Statement & Contact Info</h3>
+  <ol>
+    <li>Navigate to <strong>WordPress Admin → Appearance → Customize → MChem Theme Options</strong>.</li>
+    <li><strong>Hero Section</strong>: Modify the main headline, tagline (<em>"Engineering Sustainable Solutions for better tomorrow"</em>), and button texts.</li>
+    <li><strong>Contact & WhatsApp</strong>: Update the phone number, email (<code>mchemconsultants2@gmail.com</code>), and office address.</li>
+    <li><strong>About & Credibility</strong>: Edit the <strong>Mission Statement</strong> and <strong>About Story</strong> in real time with live preview.</li>
+    <li>Click <strong>Publish</strong> to push changes live instantly.</li>
+  </ol>
+</div>
+
+<div class="step-box">
+  <h3><span class="step-number">2</span>Uploading Photos & Videos to the Gallery</h3>
+  <ol>
+    <li>Go to <strong>WordPress Admin → Gallery → Add New Gallery Item</strong>.</li>
+    <li>Enter the title/caption (e.g., <em>“Industrial Plant Visit at Kotri Site”</em>).</li>
+    <li>In the right sidebar under <strong>Featured Image</strong>, click <strong>Set featured image</strong> and upload your photo.</li>
+    <li><em>(Optional)</em> If you have an engineering video, paste the YouTube, Vimeo, or MP4 link in the video field.</li>
+    <li>Click <strong>Publish</strong>. The new photo will appear automatically in the homepage Gallery with full-screen lightbox zoom!</li>
+  </ol>
+</div>
+
+<div class="step-box">
+  <h3><span class="step-number">3</span>Managing Leadership Team Members</h3>
+  <ol>
+    <li>Go to <strong>WordPress Admin → Team → All Team Members</strong>.</li>
+    <li>Click on any member (e.g., <em>Muhsin Ali</em>, <em>Sardar Ali</em>) or click <strong>Add New Team Member</strong>.</li>
+    <li>Update their bio, designation (e.g., <em>Founder & Managing Director</em>), and upload their official headshot under <strong>Featured Image</strong>.</li>
+    <li>Click <strong>Update</strong>. The team carousel updates automatically.</li>
+  </ol>
+</div>
+
+<div class="step-box">
+  <h3><span class="step-number">4</span>Publishing New Projects & Case Studies</h3>
+  <ol>
+    <li>Go to <strong>WordPress Admin → Projects → Add New Project</strong>.</li>
+    <li>Enter the project title, engineering scope, client name, and operational metrics.</li>
+    <li>Click <strong>Publish</strong>. The project immediately appears in the case study showcase.</li>
+  </ol>
+</div>
+
+<div class="step-box">
+  <h3><span class="step-number">5</span>Adding Client Reviews & Testimonials</h3>
+  <ol>
+    <li>Go to <strong>WordPress Admin → Reviews → Add New Review</strong>.</li>
+    <li>Enter the reviewer's name in the Title (e.g., <em>Engr. Tariq Mehmood</em>).</li>
+    <li>Type their testimonial quote in the main content box.</li>
+    <li>Enter their role, company name, and star rating in the custom fields, then click <strong>Publish</strong>.</li>
+  </ol>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     GOOGLE SEARCH & SEO PURGE RESOLUTION
+     ══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="section-header">
+  <span class="section-tag">Section 04</span>
+  <h2>Google Search Diagnosis & SEO Resolution Action Plan</h2>
+</div>
+
+<h3>1. Root Cause Analysis of Unrelated Search Results</h3>
+<p>
+  The client reported that searching for <code>mchem consultants</code> on Google showed strange links:
+  <br>• <code>mchemconsultants.com/stockroom/...</code> (<em>"Free Easy Menu Editor Premium WordPress Plugin Download"</em>)
+  <br>• <code>mchemconsultants.com/stockroom/maroon-p...</code> (<em>"Download Maroon – Photography Pro Theme Free"</em>)
+  <br>• Sitelinks: <em>Seele, Legenda, Aboss, Responsive Clothing, Download DC Agency</em>
+</p>
+<p>
+  <strong>Why This Happened:</strong> Prior to installing the clean MChem theme, the WordPress hosting environment contained old demo content, nulled plugins, or dummy downloads in the database. Googlebot crawled those pages earlier and indexed them. When the MChem theme was activated, the theme's global footer rendered across all pages, causing Google to associate the old post titles with MChem's description.
+</p>
+
+<h3>2. Theme Engine Fix Implemented in v32.0.0 (<code>inc/seo.php</code>)</h3>
+<ul>
+  <li><strong>Automated HTTP 410 Gone Purge</strong>: Any request to old dummy or spam paths (<code>stockroom</code>, <code>maroon-p</code>, <code>easy-menu-editor</code>, <code>seele</code>, <code>legenda</code>, <code>aboss</code>, <code>dc-agency</code>) is intercepted with an immediate <code>410 Content Removed</code> and <code>X-Robots-Tag: noindex, nofollow, noarchive</code>. According to Google's official documentation, <strong>410 Gone is the fastest signal</strong> instructing Googlebot to permanently drop those obsolete URLs.</li>
+  <li><strong>JSON-LD Structured Data Schema</strong>: Outputs rich snippets declaring MChem Consultants as an accredited <code>ProfessionalService</code> and <code>Organization</code> at MUET Jamshoro.</li>
+  <li><strong>Social Graph Integration</strong>: Open Graph and Twitter Cards ensure that whenever a link to <code>mchemconsultants.com</code> is shared on WhatsApp, LinkedIn, or Facebook, it renders a high-resolution branded preview card.</li>
+</ul>
+
+<div class="callout callout--warn">
+  <strong>Fast 2-Step Action for the Client to Speed Up Google Search Update:</strong>
+  <ol>
+    <li><strong>Delete Old Dummy Posts in WordPress:</strong>
+      <br>Go to <strong>WP Admin → Posts → All Posts</strong>. Select all dummy posts, choose <em>Move to Trash</em>, then open the <em>Trash</em> tab and click <strong>Empty Trash</strong>. Do the same under <strong>Pages</strong>.
+    </li>
+    <li><strong>Submit URL Removal in Google Search Console:</strong>
+      <br>Open <a href="https://search.google.com/search-console">Google Search Console</a> → Click <strong>Removals</strong> → Click <strong>New Request</strong> → Select <em>Remove all URLs with this prefix</em> → Enter: <code>https://mchemconsultants.com/stockroom/</code> and submit. Google will clear these URLs from search results within 24–48 hours.
+    </li>
+  </ol>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     INSTALLATION & CREDENTIALS APPENDIX
+     ══════════════════════════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="section-tag">Section 05</span>
+  <h2>Deployment & Technical Appendix</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30%;">Parameter</th>
+      <th>Technical Specification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Theme Package File</strong></td>
+      <td><code>mchemconsultants-pro.zip</code> (Version 32.0.0 · 15.02 MB)</td>
+    </tr>
+    <tr>
+      <td><strong>WordPress Compatibility</strong></td>
+      <td>WordPress 5.8 through WordPress 6.7+ (Gutenberg & Elementor Compatible)</td>
+    </tr>
+    <tr>
+      <td><strong>PHP Environment</strong></td>
+      <td>PHP 7.4, 8.0, 8.1, 8.2, 8.3 Supported</td>
+    </tr>
+    <tr>
+      <td><strong>File Integrity</strong></td>
+      <td>63 files verified with <strong>Zero UTF-8 BOM Bytes</strong> (Prevents WP AJAX errors)</td>
+    </tr>
+    <tr>
+      <td><strong>Stylesheet Compilation</strong></td>
+      <td>Single combined production stylesheet <code>style.css</code> for maximum speed score</td>
+    </tr>
+    <tr>
+      <td><strong>Deployment Method</strong></td>
+      <td><strong>WP Admin → Appearance → Themes → Add New → Upload Theme</strong> → Replace existing</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer-note">
+  MChem Consultants Delivery Dossier · Incubated at BIC MUET Jamshoro · Developed by Mohammad Farooque · All Rights Reserved &copy; 2026
+</div>
+
+</body>
+</html>

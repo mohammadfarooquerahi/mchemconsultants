@@ -1,0 +1,192 @@
+/**
+ * MChem Consultants - assets/css/hero.css
+ * NIW-matching Editorial Serif Hero Section (Light Mode Default & Dark Mode Adaptive).
+ */
+
+.mchem-hero {
+  position: relative;
+  min-height: calc(100vh - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(8.5rem, 14vh, 11.5rem);
+  padding-bottom: clamp(3.5rem, 7vh, 5.5rem);
+  background: var(--mchem-bg);
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+body.admin-bar .mchem-hero {
+  padding-top: clamp(10rem, 16vh, 13rem);
+}
+
+.mchem-hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Background Loop Video */
+.mchem-hero__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.32;
+  filter: saturate(1.15) contrast(1.08);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+[data-theme="dark"] .mchem-hero__video {
+  opacity: 0.36;
+}
+
+.mchem-hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(248, 250, 252, 0.45) 0%, rgba(248, 250, 252, 0.68) 55%, rgba(248, 250, 252, 0.88) 100%);
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .mchem-hero__video-overlay {
+  background: radial-gradient(circle at 50% 45%, rgba(6, 16, 31, 0.45) 0%, rgba(6, 16, 31, 0.68) 55%, rgba(6, 16, 31, 0.88) 100%);
+}
+
+.mchem-hero__bg-glow {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 90vw);
+  height: 600px;
+  border-radius: 50%;
+  background: var(--mchem-hero-glow);
+  filter: blur(40px);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.mchem-hero__bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--mchem-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mchem-grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  z-index: 2;
+}
+
+.mchem-hero__bg-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.mchem-hero__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.mchem-hero__content {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mchem-hero__eyebrow-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.mchem-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(2, 132, 199, 0.09);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--mchem-primary-blue);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.74rem, 1.1vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.mchem-hero__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mchem-primary-blue);
+  box-shadow: 0 0 10px var(--mchem-primary-blue);
+  animation: mchem-pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes mchem-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.85); }
+}
+
+.mchem-hero__heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0 0 1.25rem 0;
+  text-wrap: balance;
+  transition: color 0.3s ease;
+}
+
+.mchem-hero__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-hero__sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.98rem, 1.3vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--mchem-text-muted);
+  max-width: 720px;
+  margin: 0 0 2.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-hero__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 520px) {
+  .mchem-hero__cta {
+    flex-direction: row;
+    gap: 1.15rem;
+  }
+}

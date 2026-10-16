@@ -1,0 +1,505 @@
+/**
+ * MChem Consultants - assets/css/form.css
+ * NIW-matching Consultation & Booking Form Section (Light Mode Default & Dark Mode Adaptive).
+ */
+
+.mchem-booking-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--mchem-bg);
+  transition: background 0.3s ease;
+}
+
+/* ── Split Section Header ─────────────────────────────────────────────────── */
+.mchem-booking-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+@media (min-width: 900px) {
+  .mchem-booking-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .mchem-booking-header__left {
+    max-width: 580px;
+  }
+  .mchem-booking-header__right {
+    max-width: 440px;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.mchem-booking-header__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mchem-booking-header__pill span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+}
+
+.mchem-booking-header__title {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--mchem-text-heading);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.mchem-booking-header__highlight {
+  color: var(--mchem-primary-blue);
+  background: var(--mchem-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.mchem-booking-header__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: var(--mchem-text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* ── Elevated Form Panel ─────────────────────────────────────────────────── */
+.mchem-form-panel {
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 28px;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  box-shadow: var(--mchem-shadow-card);
+  max-width: 960px;
+  margin: 0 auto;
+  transition: all 0.35s ease;
+}
+
+.mchem-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mchem-form__row--2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .mchem-form__row--2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mchem-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mchem-form__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mchem-form__label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mchem-text);
+}
+
+.mchem-form__req {
+  color: var(--mchem-primary-blue);
+}
+
+.mchem-form__opt {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  color: var(--mchem-text-faint);
+}
+
+/* Inputs, Selects, Textareas */
+.mchem-form__input,
+.mchem-form__select,
+.mchem-form__textarea {
+  width: 100%;
+  background: var(--mchem-input-bg);
+  border: 1px solid var(--mchem-input-border);
+  border-radius: 14px;
+  color: var(--mchem-input-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.15rem;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.mchem-form__input {
+  height: 52px;
+}
+
+.mchem-form__input::placeholder,
+.mchem-form__textarea::placeholder {
+  color: var(--mchem-input-placeholder);
+  font-size: 0.9rem;
+}
+
+.mchem-form__input:focus,
+.mchem-form__select:focus,
+.mchem-form__textarea:focus {
+  border-color: var(--mchem-primary-blue);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+/* Phone input group */
+.mchem-form__phone-group {
+  display: flex;
+  align-items: center;
+  background: var(--mchem-input-bg);
+  border: 1px solid var(--mchem-input-border);
+  border-radius: 14px;
+  overflow: hidden;
+  height: 52px;
+  transition: all 0.25s ease;
+}
+
+.mchem-form__phone-group:focus-within {
+  border-color: var(--mchem-primary-blue);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.mchem-form__phone-prefix {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-inline: 1rem 0.75rem;
+  background: var(--mchem-bg-elevated);
+  border-right: 1px solid var(--mchem-border);
+  height: 100%;
+  color: var(--mchem-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.mchem-form__flag {
+  font-size: 1.1rem;
+}
+
+.mchem-form__input--phone {
+  border: none;
+  background: transparent;
+  height: 100%;
+  border-radius: 0;
+}
+.mchem-form__input--phone:focus {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Select wrapper */
+.mchem-form__select-wrap {
+  position: relative;
+}
+
+.mchem-form__select {
+  height: 52px;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.75rem;
+}
+
+.mchem-form__select option {
+  background: var(--mchem-bg-card);
+  color: var(--mchem-text);
+  padding: 0.5rem;
+}
+
+.mchem-form__select-arrow {
+  position: absolute;
+  right: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mchem-text-muted);
+  pointer-events: none;
+}
+
+/* Textarea */
+.mchem-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Consent Checkbox */
+.mchem-form__consent {
+  margin-top: 0.25rem;
+}
+
+.mchem-form__checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.mchem-form__checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mchem-form__checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--mchem-input-bg);
+  border: 1px solid var(--mchem-input-border);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.mchem-form__checkbox:checked + .mchem-form__checkbox-custom {
+  background: var(--mchem-primary-blue);
+  border-color: var(--mchem-primary-blue);
+}
+
+.mchem-form__checkbox:checked + .mchem-form__checkbox-custom::after {
+  content: '✓';
+  font-size: 13px;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.mchem-form__consent-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--mchem-text-muted);
+}
+
+/* Submit Row */
+.mchem-form__submit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mchem-form__submit-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.mchem-form__feedback {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.mchem-form__feedback.is-error {
+  color: #EF4444;
+}
+
+.mchem-form__feedback.is-success {
+  color: #10B981;
+}
+
+.mchem-form__btn {
+  align-self: flex-end;
+  padding: 0.95rem 2.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.mchem-form__btn.is-loading .mchem-form__btn-text,
+.mchem-form__btn.is-loading .mchem-btn__arrow {
+  display: none;
+}
+
+.mchem-form__spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: mchem-spin 0.7s linear infinite;
+}
+
+.mchem-form__btn.is-loading .mchem-form__spinner {
+  display: block;
+}
+
+@keyframes mchem-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Country Selector ────────────────────────────────────────────────────── */
+.mchem-form__country-select {
+  position: relative;
+  height: 100%;
+}
+.mchem-form__country-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-inline: 1rem 0.75rem;
+  background: var(--mchem-bg-elevated);
+  border: none;
+  border-right: 1px solid var(--mchem-border);
+  height: 100%;
+  color: var(--mchem-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mchem-form__country-btn:hover {
+  background: var(--mchem-input-border);
+}
+.mchem-form__country-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 250px;
+  background: var(--mchem-bg-card);
+  border: 1px solid var(--mchem-border-card);
+  border-radius: 12px;
+  box-shadow: var(--mchem-shadow-card);
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.mchem-form__country-dropdown[hidden] {
+  display: none !important;
+}
+.mchem-form__country-search {
+  padding: 0.75rem;
+  border: none;
+  border-bottom: 1px solid var(--mchem-border);
+  background: var(--mchem-input-bg);
+  color: var(--mchem-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+}
+.mchem-form__country-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.mchem-form__country-list li {
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--mchem-text);
+}
+.mchem-form__country-list li:hover,
+.mchem-form__country-list li.is-selected {
+  background: rgba(2, 132, 199, 0.1);
+}
+
+/* ── File Upload ─────────────────────────────────────────────────────────── */
+.mchem-form__file-zone {
+  border: 2px dashed var(--mchem-input-border);
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--mchem-input-bg);
+}
+.mchem-form__file-zone:hover,
+.mchem-form__file-zone.is-dragover {
+  border-color: var(--mchem-primary-blue);
+  background: rgba(2, 132, 199, 0.05);
+}
+.mchem-form__file-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mchem-text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+}
+.mchem-form__file-prompt svg {
+  color: var(--mchem-primary-blue);
+  margin-bottom: 0.5rem;
+}
+.mchem-form__file-prompt strong {
+  color: var(--mchem-primary-blue);
+}
+.mchem-form__file-prompt small {
+  font-size: 0.75rem;
+  color: var(--mchem-text-faint);
+}
+.mchem-form__file-selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--mchem-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+}
+.mchem-form__file-name {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mchem-form__file-remove {
+  background: none;
+  border: none;
+  color: #EF4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
