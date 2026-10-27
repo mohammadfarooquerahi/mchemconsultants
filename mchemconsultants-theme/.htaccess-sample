@@ -1,0 +1,113 @@
+# ==============================================================================
+# MChem Consultants - Production Server Configuration (.htaccess)
+# Chemical Engineering Consultancy | BIC MUET Jamshoro
+# Speed Optimization, Gzip Compression, Browser Caching, and Enterprise Security
+# ==============================================================================
+
+# ── 1. GZIP / BROTLI COMPRESSION (Speeds up website loading 3-4x) ──────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE font/opentype font/ttf font/eot font/otf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+</IfModule>
+
+# ── 2. BROWSER CACHING (Expires & Cache-Control Headers) ──────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # Images and Media (1 Year)
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/webm "access plus 1 year"
+
+  # Web Fonts (1 Year)
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+
+  # CSS and JavaScript (1 Month)
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+
+  # HTML & JSON (No cache or short cache for fresh dynamic updates)
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # 1 Year Cache for Static Media
+  <FilesMatch "\.(ico|jpe?g|png|gif|webp|svg|woff2?|ttf|otf|mp4)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+
+  # 1 Month Cache for CSS & JS
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+
+  # ── 3. ENTERPRISE HTTP SECURITY HEADERS ─────────────────────────────────────
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+</IfModule>
+
+# ── 4. SECURITY HARDENING & EXPLOIT PREVENTION ────────────────────────────────
+
+# Disable directory browsing (Stops hackers from viewing file lists)
+Options -Indexes
+
+# Block sensitive WordPress files
+<FilesMatch "^(wp-config\.php|\.htaccess|\.env|\.git|readme\.html|license\.txt)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Block access to xmlrpc.php (Prevents brute-force attacks)
+<Files xmlrpc.php>
+  Order Deny,Allow
+  Deny from all
+</Files>
+
+# Protect wp-content/uploads/ from executing malicious PHP scripts
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^wp-content/uploads/.*\.php$ - [F,L]
+</IfModule>
+
+# ── 5. STANDARD WORDPRESS PERMALINKS ENGINE ───────────────────────────────────
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

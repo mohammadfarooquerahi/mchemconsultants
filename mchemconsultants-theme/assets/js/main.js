@@ -237,25 +237,50 @@
     } );
   }
 
-  // ── 9. INTRO SPLASH TRANSITION (2s Smooth Reveal) ───────────────────────
+  // ── 9. INTRO SPLASH & PRELOADER ENGINE (Zero-FOUC & 100% Loaded Reveal) ─
   function initIntroSplash() {
     const splash = document.getElementById( 'mchem-intro-splash' );
-    if ( ! splash ) return;
+    if ( ! splash ) {
+      document.documentElement.classList.remove( 'mchem-is-loading' );
+      return;
+    }
 
-    // Smoothly dismiss after 2.0s
-    setTimeout( () => {
+    let isDismissed = false;
+    const minSplashDuration  = 1600; // Minimum 1.6s so visitor sees the brand intro
+    const maxFailsafeTimeout = 3800; // Max 3.8s safety cutoff for slow networks / stalled 3rd-party assets
+    const startTime          = ( window.__mchemStartTime || Date.now() );
+
+    function dismissSplash() {
+      if ( isDismissed ) return;
+      isDismissed = true;
+
       splash.classList.add( 'is-dismissed' );
+      document.documentElement.classList.remove( 'mchem-is-loading' );
+
       setTimeout( () => {
         splash.style.display = 'none';
-      }, 650 );
-    }, 2000 );
+        document.dispatchEvent( new CustomEvent( 'mchem:siteReady' ) );
+      }, 550 );
+    }
+
+    // Only dismiss once stylesheets, images, and fonts are completely loaded
+    if ( document.readyState === 'complete' ) {
+      const elapsed = Date.now() - startTime;
+      const waitTime = Math.max( 0, minSplashDuration - elapsed );
+      setTimeout( dismissSplash, waitTime );
+    } else {
+      window.addEventListener( 'load', () => {
+        const elapsed = Date.now() - startTime;
+        const waitTime = Math.max( 0, minSplashDuration - elapsed );
+        setTimeout( dismissSplash, waitTime );
+      }, { once: true } );
+    }
+
+    // Safety timeout: prevents stuck preloader under extreme network drop
+    setTimeout( dismissSplash, maxFailsafeTimeout );
   }
 
-  if ( document.readyState === 'loading' ) {
-    document.addEventListener( 'DOMContentLoaded', initIntroSplash );
-  } else {
-    initIntroSplash();
-  }
+  initIntroSplash();
 
   // ── 10. HERO BACKGROUND VIDEO AUTOPLAY GUARANTEE ─────────────────────────
   function initHeroVideo() {

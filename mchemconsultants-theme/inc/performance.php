@@ -99,3 +99,59 @@ add_action( 'save_post_mchem_service', function() {
 add_action( 'after_switch_theme', function() {
     delete_transient( 'mchem_services_cache' );
 } );
+
+// ── 4. DEFER NON-CRITICAL JAVASCRIPT TO UNBLOCK RENDERING ──────────────────
+add_filter( 'script_loader_tag', 'mchem_defer_scripts', 10, 3 );
+function mchem_defer_scripts( $tag, $handle, $src ) {
+    // Keep admin scripts untouched
+    if ( is_admin() ) {
+        return $tag;
+    }
+
+    // Scripts that should be deferred to allow instant visual painting
+    $defer_scripts = array(
+        'mchem-ticker',
+        'mchem-whatsapp-form',
+        'comment-reply',
+    );
+
+    if ( in_array( $handle, $defer_scripts, true ) ) {
+        if ( false === strpos( $tag, ' defer' ) ) {
+            $tag = str_replace( ' src', ' defer="defer" src', $tag );
+        }
+    }
+
+    return $tag;
+}
+
+// ── 5. ENTERPRISE HTTP SECURITY HEADERS ──────────────────────────────────────
+add_action( 'send_headers', 'mchem_security_headers' );
+function mchem_security_headers() {
+    if ( ! is_admin() && ! headers_sent() ) {
+        header( 'X-Content-Type-Options: nosniff' );
+        header( 'X-Frame-Options: SAMEORIGIN' );
+        header( 'X-XSS-Protection: 1; mode=block' );
+        header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+        header( 'Permissions-Policy: camera=(), microphone=(), geolocation=()' );
+    }
+}
+
+// ── 6. DISABLE XML-RPC PINGBACK DDOS VECTORS ─────────────────────────────────
+add_filter( 'xmlrpc_methods', function( $methods ) {
+    unset( $methods['pingback.ping'] );
+    return $methods;
+} );
+add_filter( 'wp_headers', function( $headers ) {
+    unset( $headers['X-Pingback'] );
+    return $headers;
+} );
+
+// ── 7. REMOVE QUERY STRINGS FROM STATIC ASSETS (Cache Optimization) ──────────
+add_filter( 'style_loader_src', 'mchem_remove_query_strings', 10, 2 );
+add_filter( 'script_loader_src', 'mchem_remove_query_strings', 10, 2 );
+function mchem_remove_query_strings( $src ) {
+    if ( strpos( $src, '?ver=' ) ) {
+        $src = remove_query_arg( 'ver', $src );
+    }
+    return $src;
+}

@@ -10,25 +10,179 @@
  * @package mchemconsultants
  */
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?> class="mchem-html" data-theme="light">
+<html <?php language_attributes(); ?> class="mchem-html mchem-is-loading" data-theme="light">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <link rel="icon" href="<?php echo esc_url( get_template_directory_uri() . '/favicon.ico' ); ?>" type="image/x-icon">
     <link rel="shortcut icon" href="<?php echo esc_url( get_template_directory_uri() . '/favicon.ico' ); ?>" type="image/x-icon">
+
+    <!-- Preload Brand Logo for Instant Splash Rendering -->
+    <link rel="preload" href="<?php echo esc_url( get_template_directory_uri() . '/assets/images/mchem-logo.png' ); ?>" as="image">
 
     <!-- Resource preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Anti-flicker theme initialization (Light mode default) -->
+    <!-- Critical Anti-FOUC (Flash of Unstyled Content) & Loading State Script -->
     <script>
+      window.__mchemStartTime = Date.now();
       (function() {
-        var theme = localStorage.getItem('mchem_theme') || 'light';
-        document.documentElement.setAttribute('data-theme', theme);
+        try {
+          var theme = localStorage.getItem('mchem_theme') || 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.classList.add('mchem-is-loading');
+        } catch(e) {}
       })();
     </script>
+
+    <!-- Critical Inline CSS: Prevents broken HTML flash on slow networks -->
+    <style id="mchem-critical-preloader-css">
+      html.mchem-is-loading {
+        overflow: hidden !important;
+        background-color: #06101F !important;
+      }
+      html.mchem-is-loading body {
+        overflow: hidden !important;
+        background-color: #06101F !important;
+      }
+      html.mchem-is-loading body > *:not(#mchem-intro-splash) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      #mchem-intro-splash {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 99999999 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #06101F !important;
+        overflow: hidden !important;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      #mchem-intro-splash.is-dismissed {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: scale(1.03) !important;
+        pointer-events: none !important;
+      }
+      .mchem-splash__backdrop {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 45%, rgba(2, 132, 199, 0.25) 0%, rgba(201, 152, 42, 0.12) 40%, #06101F 75%);
+        pointer-events: none;
+      }
+      .mchem-splash__content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+        max-width: 620px;
+        box-sizing: border-box;
+      }
+      .mchem-splash__logo-box {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        margin-bottom: 1.5rem;
+        display: grid;
+        place-items: center;
+      }
+      .mchem-splash__logo {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.7));
+        animation: mchem-splash-logo 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .mchem-splash__ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px dashed rgba(56, 189, 248, 0.45);
+        animation: mchem-splash-spin 3s linear infinite;
+      }
+      .mchem-splash__aura {
+        position: absolute;
+        inset: -15px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, transparent 70%);
+        filter: blur(12px);
+        animation: mchem-splash-pulse 2s ease-in-out infinite;
+      }
+      .mchem-splash__title {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-size: clamp(1.4rem, 4vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin: 0 0 0.5rem 0;
+        text-shadow: 0 2px 20px rgba(56, 189, 248, 0.4);
+        animation: mchem-splash-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+      }
+      .mchem-splash__tagline {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-size: clamp(0.85rem, 2vw, 1.05rem);
+        font-weight: 500;
+        color: #94A3B8;
+        letter-spacing: 0.02em;
+        line-height: 1.5;
+        margin: 0 0 1.8rem 0;
+        animation: mchem-splash-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+      }
+      .mchem-splash__progress {
+        width: 180px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .mchem-splash__bar {
+        display: block;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #38BDF8 0%, #2DD4BF 50%, #C9982A 100%);
+        border-radius: inherit;
+        animation: mchem-splash-bar 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      @keyframes mchem-splash-logo {
+        0% { opacity: 0; transform: scale(0.6) rotate(-25deg); }
+        45% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+        75% { transform: scale(0.98) rotate(0deg); }
+        100% { opacity: 1; transform: scale(1) rotate(0deg); }
+      }
+      @keyframes mchem-splash-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes mchem-splash-pulse {
+        0%, 100% { transform: scale(0.9); opacity: 0.4; }
+        50% { transform: scale(1.2); opacity: 0.8; }
+      }
+      @keyframes mchem-splash-fade-up {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes mchem-splash-bar {
+        0% { width: 0%; }
+        60% { width: 80%; }
+        100% { width: 100%; }
+      }
+    </style>
 
     <?php wp_head(); ?>
 </head>

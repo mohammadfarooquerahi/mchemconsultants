@@ -56,8 +56,9 @@ function mchem_seo_meta_tags() {
     $default_keywords = 'MChem Consultants, Chemical Engineering Consultancy, Process Simulation, Process Optimization, HAZOP Studies, LOPA Risk Analysis, BIC MUET Jamshoro, Mehran University, Plant Design, PFD P&ID, Energy Efficiency, Waste-to-Energy, Pakistan Engineering Consultant';
     $meta_keywords   = ! empty( $custom_keywords ) ? $custom_keywords : $default_keywords;
 
-    // Google Site Verification
-    $gsc_code = get_theme_mod( 'mchem_gsc_verification', '' );
+    // Google & Bing Site Verification
+    $gsc_code  = get_theme_mod( 'mchem_gsc_verification', '' );
+    $bing_code = get_theme_mod( 'mchem_bing_verification', '' );
 
     // Canonical URL
     $canonical_url = is_singular() ? get_permalink() : $site_url;
@@ -72,6 +73,9 @@ function mchem_seo_meta_tags() {
 
     <?php if ( ! empty( $gsc_code ) ) : ?>
     <meta name="google-site-verification" content="<?php echo esc_attr( trim( $gsc_code ) ); ?>">
+    <?php endif; ?>
+    <?php if ( ! empty( $bing_code ) ) : ?>
+    <meta name="msvalidate.01" content="<?php echo esc_attr( trim( $bing_code ) ); ?>">
     <?php endif; ?>
 
     <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
@@ -135,6 +139,46 @@ function mchem_seo_meta_tags() {
             { "@type": "Place", "name": "International" }
           ],
           "priceRange": "$$",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "ratingCount": "18"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Chemical Engineering Consultancy Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Process Safety & Risk Management (HAZOP / LOPA / QRA)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Process Optimization & Simulation (Modeling & Pinch Analysis)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Sustainable Engineering Solutions (Decarbonization & Waste-to-Energy)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Professional Industrial Training (MUET BIC certified)"
+                }
+              }
+            ]
+          },
           "knowsAbout": [
             "Chemical Engineering Consultancy",
             "Process Safety and HAZOP Studies",

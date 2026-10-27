@@ -301,4 +301,16 @@ function mchem_customizer_register( $wp_customize ) {
         'type'        => 'text',
         'description' => esc_html__( 'Paste your HTML tag verification code (content attribute) from Google Search Console to verify ownership.', 'mchemconsultants' ),
     ) );
+
+    // Bing Webmaster Verification
+    $wp_customize->add_setting( 'mchem_bing_verification', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'mchem_bing_verification', array(
+        'label'       => esc_html__( 'Bing Webmaster Verification Code', 'mchemconsultants' ),
+        'section'     => 'mchem_seo_section',
+        'type'        => 'text',
+        'description' => esc_html__( 'Paste your msvalidate.01 meta content code from Bing Webmaster Tools to index in Bing & Yahoo.', 'mchemconsultants' ),
+    ) );
 }

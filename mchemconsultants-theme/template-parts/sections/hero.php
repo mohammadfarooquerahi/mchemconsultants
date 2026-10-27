@@ -30,7 +30,7 @@ $cta2_text     = get_theme_mod( 'mchem_hero_cta2', 'Request a Consultation' );
             muted
             playsinline
             webkit-playsinline
-            preload="auto"
+            preload="metadata"
             disablepictureinpicture
             disableremoteplayback
         >
