@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Website Analysis Report - MChem Consultants</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 16mm 20mm 16mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.6;
+      font-size: 13px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .report-header {
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .report-title-group h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .report-title-group p {
+      font-size: 12px;
+      color: #0284c7;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .report-meta {
+      text-align: right;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-primary { background: #e0f2fe; color: #0369a1; }
+    .badge-success { background: #dcfce7; color: #15803d; }
+    .badge-warning { background: #fef3c7; color: #b45309; }
+    .badge-danger  { background: #fee2e2; color: #b91c1c; }
+
+    h2.section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 4px solid #0284c7;
+      padding: 8px 12px;
+      margin-top: 22px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      page-break-after: avoid;
+    }
+
+    p, ul {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .overview-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 14px;
+      background: #fafafa;
+    }
+
+    .overview-card strong {
+      display: block;
+      color: #0369a1;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .overview-card p {
+      font-size: 12px;
+      color: #334155;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .callout-box {
+      border-left: 3px solid #0d9488;
+      background: #f0fdfa;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12.5px;
+      color: #134e4a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      font-size: 11.5px;
+    }
+
+    table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      text-align: left;
+      padding: 7px 10px;
+      border: 1px solid #cbd5e1;
+      text-transform: uppercase;
+      font-size: 10.5px;
+    }
+
+    table td {
+      padding: 7px 10px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      color: #334155;
+    }
+
+    table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .tech-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tech-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 7px 10px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+    }
+
+    .tech-item .label {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .tech-item .desc {
+      color: #64748b;
+      font-size: 11px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 10.5px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Report Header -->
+  <div class="report-header">
+    <div class="report-title-group">
+      <h1>Technical Website Analysis Report</h1>
+      <p>Target System: MChem Consultants &bull; mchemconsultants.com</p>
+    </div>
+    <div class="report-meta">
+      <strong>Scope:</strong> Full Site &amp; Infrastructure Audit<br>
+      <strong>Affiliation:</strong> BIC MUET Jamshoro<br>
+      <strong>Audit Date:</strong> November 2026 &bull; Production Live
+    </div>
+  </div>
+
+  <!-- 1. WEBSITE OVERVIEW -->
+  <h2 class="section-title">1. Website Overview</h2>
+  
+  <div class="overview-grid">
+    <div class="overview-card" style="grid-column: span 2;">
+      <strong>What (Core Identity)</strong>
+      <p>MChem Consultants (mchemconsultants.com) is the official corporate web platform of an engineering consultancy firm incubated at the Business Incubation Center (BIC), Mehran University of Engineering and Technology (MUET), Jamshoro, specializing in Process Safety, Simulation &amp; Modeling, Plant Optimization, and Industrial Training.</p>
+    </div>
+    <div class="overview-card">
+      <strong>Why (Core Purpose)</strong>
+      <p>It solves the lack of a centralized, credible technical digital showcase for MChem's faculty-guided expertise, allowing industrial clients to evaluate past project metrics, review credentials, and request formal engineering consultations.</p>
+    </div>
+    <div class="overview-card">
+      <strong>Who (Business &amp; Target Audience)</strong>
+      <p><strong>Business:</strong> MChem Consultants (Founded by Muhsin Ali; BIC MUET Incubated).<br>
+      <strong>Audience:</strong> Plant managers, process engineers, operations directors, and compliance officers across Oil &amp; Gas, Chemical, Textile, and Academic sectors.</p>
+    </div>
+    <div class="overview-card">
+      <strong>Where (Service Geography)</strong>
+      <p>Headquartered at the Department of Chemical Engineering, MUET Jamshoro, Sindh, Pakistan; serving heavy manufacturing and energy processing facilities across Pakistan and international markets.</p>
+    </div>
+    <div class="overview-card">
+      <strong>How (Visitor Journey)</strong>
+      <p>Visitors discover MChem's university credentials &rarr; explore 6 technical service disciplines &rarr; review concrete case studies (metrics &amp; plant imagery) &rarr; filter industry solutions &rarr; initiate direct WhatsApp consultation or submit an AJAX inquiry with technical attachments.</p>
+    </div>
+  </div>
+
+  <!-- 2. PROBLEM STATEMENT -->
+  <h2 class="section-title">2. Problem Statement</h2>
+  <div class="callout-box">
+    Prior to the establishment of this web platform, MChem Consultants lacked an authoritative digital presence to demonstrate their faculty mentorship and BIC MUET incubation credentials to commercial clients. Process plant executives requiring HAZOP audits, simulation models, and debottlenecking studies had no formal channel to review verifiable engineering metrics or technical project deliverables. Client inquiries and scope documents were handled manually through personal messaging, leading to communication bottlenecks and poor search engine discoverability.
+  </div>
+
+  <!-- 3. SOLUTION -->
+  <h2 class="section-title">3. Solution</h2>
+  <div class="callout-box" style="border-left-color: #0284c7; background: #f0f9ff; color: #0369a1;">
+    The deployment of <code>mchemconsultants.com</code> delivers a modern, high-performance web platform that bridges academic engineering rigor with commercial industrial requirements. The platform integrates responsive project case studies, an interactive consultation booking portal with document upload capabilities, and dual-channel lead dispatch directly to WhatsApp and official email. Server-level speed caching, a zero-FOUC branded preloader, and an automated SEO/410-Gone engine ensure fast page loads and strong search engine ranking.
+  </div>
+
+  <!-- 4. PAGES LIST -->
+  <h2 class="section-title">4. Pages List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Page / Endpoint</th>
+        <th style="width: 35%;">Live URL</th>
+        <th style="width: 45%;">Purpose &amp; Architectural Function</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Homepage (Single-Page App)</strong></td>
+        <td><code>https://mchemconsultants.com/</code></td>
+        <td>Primary interactive portal containing all 9 core sections (Hero, About, Services, Projects, Gallery, Industries, Team, Reviews, and Booking).</td>
+      </tr>
+      <tr>
+        <td><strong>About Us (Standalone)</strong></td>
+        <td><code>https://mchemconsultants.com/about/</code></td>
+        <td>Dedicated secondary page elaborating on university origins, MUET faculty mentorship, mission statement, and leadership credentials.</td>
+      </tr>
+      <tr>
+        <td><strong>Stockroom / Demo URLs</strong></td>
+        <td><code>https://mchemconsultants.com/stockroom/</code></td>
+        <td>Automated HTTP 410 Gone purge route designed to permanently eliminate legacy demo/spam URLs from Google search index.</td>
+      </tr>
+      <tr>
+        <td><strong>WP Administration</strong></td>
+        <td><code>https://mchemconsultants.com/wp-admin/</code></td>
+        <td>Protected administrative backend enabling client to update text, upload project photos, adjust team members, and view incoming leads.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Page Break for Clean Printing -->
+  <div class="page-break"></div>
+
+  <!-- 5. HOMEPAGE SECTIONS -->
+  <h2 class="section-title">5. Homepage Sections (Top to Bottom)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Section Name</th>
+        <th style="width: 15%;">Anchor ID</th>
+        <th style="width: 60%;">Detailed Function &amp; User Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Brand Splash Preloader</strong></td>
+        <td><code>#mchem-intro-splash</code></td>
+        <td>Displays an animated rotating MChem logo, glowing tagline, and progress bar for 2s while blocking unstyled HTML on slow internet.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Floating Island Header</strong></td>
+        <td><code>#mchem-site-header</code></td>
+        <td>Sticky glassmorphic navbar with enlarged logo branding, instant email link, dark/light theme switcher, and mobile drawer toggle.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Hero Banner</strong></td>
+        <td><code>#home</code></td>
+        <td>High-impact visual banner with looping background engineering video, particle canvas, tagline, and dual consultation action buttons.</td>
+      </tr>
+      <tr>
+        <td><strong>4. About &amp; Story Bento</strong></td>
+        <td><code>#about</code></td>
+        <td>Showcases MChem's mission, engineering approach, official BIC MUET incubation badge, and faculty guidance credentials.</td>
+      </tr>
+      <tr>
+        <td><strong>5. Core Services &amp; Ticker</strong></td>
+        <td><code>#services</code></td>
+        <td>Continuous animated capability ticker plus a 3-column interactive card grid presenting the 6 key engineering service domains.</td>
+      </tr>
+      <tr>
+        <td><strong>6. Projects &amp; Case Studies</strong></td>
+        <td><code>#projects</code></td>
+        <td>Detailed engineering case studies displaying verified metrics (e.g., 28% thermal energy reduction, 22% distillation capacity boost).</td>
+      </tr>
+      <tr>
+        <td><strong>7. Photo &amp; Video Gallery</strong></td>
+        <td><code>#gallery</code></td>
+        <td>Responsive visual showcase of real plant operations, engineering simulations, laboratory testing, and academic workshops.</td>
+      </tr>
+      <tr>
+        <td><strong>8. Industries &amp; Sectors</strong></td>
+        <td><code>#industries</code></td>
+        <td>Interactive fan-deck tab switcher showcasing specialized engineering solutions for Oil &amp; Gas, Chemical, Textile, and Academia.</td>
+      </tr>
+      <tr>
+        <td><strong>9. Leadership Team</strong></td>
+        <td><code>#team</code></td>
+        <td>Carousel highlighting key engineers and directors (Muhsin Ali, Sardar Ali, etc.) with squircle badges and direct contact buttons.</td>
+      </tr>
+      <tr>
+        <td><strong>10. Client Reviews</strong></td>
+        <td><code>#reviews</code></td>
+        <td>Authentic client testimonials with 5-star rating badges from plant managers, process directors, and institutional partners.</td>
+      </tr>
+      <tr>
+        <td><strong>11. Consultation Booking</strong></td>
+        <td><code>#booking</code></td>
+        <td>Interactive booking interface with discipline selection, country code dropdown, file upload (PFD/P&amp;ID), and dual lead dispatch.</td>
+      </tr>
+      <tr>
+        <td><strong>12. Quick Contact Dock</strong></td>
+        <td><em>Floating Component</em></td>
+        <td>Persistent bottom-right floating pill dock providing instant one-click access to WhatsApp chat and direct email composition.</td>
+      </tr>
+      <tr>
+        <td><strong>13. Global Footer</strong></td>
+        <td><code>footer</code></td>
+        <td>Contains institutional contact details, MUET Jamshoro map link, legal copyright, BIC MUET logo, and developer attribution.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 6. FEATURES -->
+  <h2 class="section-title">6. Key Features Breakdown</h2>
+  
+  <p><strong>A. Customer-Facing Features:</strong></p>
+  <ul>
+    <li><strong>Dual-Action Consultation Form:</strong> Interactive multi-step form supporting service selection, timeline constraints, country code selection, and technical document attachment (P&amp;ID, PFD, RFQs up to 10MB).</li>
+    <li><strong>Instant WhatsApp Launch:</strong> Pre-populates structured consultation inquiries directly into WhatsApp (<code>+92 332 0386271</code>).</li>
+    <li><strong>Smart Email Redirection:</strong> Automatically launches Gmail Webmail in a new desktop tab or invokes native client on smartphones to guarantee zero failed email dispatches.</li>
+    <li><strong>Dark / Light Theme Toggle:</strong> Full site-wide theme engine with client-side <code>localStorage</code> persistence.</li>
+    <li><strong>Interactive Gallery Lightbox:</strong> High-resolution engineering imagery with fullscreen modal preview.</li>
+  </ul>
+
+  <p><strong>B. Business &amp; Administrative Features:</strong></p>
+  <ul>
+    <li><strong>Zero-Code Content Management:</strong> Fully manageable via WordPress dashboard for Services, Projects, Team, and Reviews.</li>
+    <li><strong>WordPress Customizer Integration:</strong> Allows client to adjust phone numbers, contact emails, addresses, and SEO tags without touching code.</li>
+    <li><strong>Automated Lead Routing:</strong> Sends AJAX booking submissions with file attachments directly to <code>mchemconsultants2@gmail.com</code>.</li>
+    <li><strong>Security Nonce Validation:</strong> Form submissions protected against CSRF and automated spam bots.</li>
+  </ul>
+
+  <p><strong>C. Design &amp; User Experience Features:</strong></p>
+  <ul>
+    <li><strong>Zero-FOUC Preloader:</strong> Inline critical CSS preventing unstyled content flash on low-speed 2G/3G mobile networks.</li>
+    <li><strong>Fully Responsive Layout:</strong> Fluid CSS Grid and Flexbox architectures adapting cleanly from 320px mobile screens to 4K displays.</li>
+    <li><strong>Industrial Engineering Palette:</strong> Bespoke palette matching deep navy (<code>#06101F</code>), cyan/teal (<code>#0284C7</code>), and academic gold (<code>#C9982A</code>).</li>
+  </ul>
+
+  <p><strong>D. SEO &amp; Marketing Features:</strong></p>
+  <ul>
+    <li><strong>Open Graph &amp; Social Meta Tags:</strong> Formatted previews for WhatsApp, LinkedIn, and Facebook sharing.</li>
+    <li><strong>JSON-LD Structured Data:</strong> Injects <code>ProfessionalService</code> and <code>Organization</code> schemas with MUET Jamshoro geo-coordinates.</li>
+    <li><strong>Google &amp; Bing Webmaster Integration:</strong> Built-in verification controls for Search Console and Bing Webmaster Tools.</li>
+    <li><strong>Automated 410 Gone Engine:</strong> Signals search crawlers to permanently purge obsolete demo/spam URLs.</li>
+  </ul>
+
+  <!-- Page Break for Clean Printing -->
+  <div class="page-break"></div>
+
+  <!-- 7. TECHNOLOGIES -->
+  <h2 class="section-title">7. Technology Stack (Detected from Live Source)</h2>
+  
+  <div class="tech-list">
+    <div class="tech-item">
+      <div>
+        <div class="label">Content Management System</div>
+        <div class="desc">WordPress Core v6.7 (REST API Active)</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Hosting &amp; Web Server</div>
+        <div class="desc">Hostinger Cloud / LiteSpeed Web Server</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Active Theme</div>
+        <div class="desc">Custom Theme: MChem Consultants (v33.0.0)</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Performance &amp; Caching</div>
+        <div class="desc">LiteSpeed Cache (LSCache) + Gzip Compression</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Typography &amp; Fonts</div>
+        <div class="desc">Google Fonts: Plus Jakarta Sans &amp; Inter</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Compliance &amp; Cookies</div>
+        <div class="desc">SureCookie Privacy Consent Framework</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Frontend Architecture</div>
+        <div class="desc">Vanilla JavaScript (ES6+), CSS3 Variables &amp; Grid</div>
+      </div>
+      <span class="badge badge-success">Confirmed from source</span>
+    </div>
+    <div class="tech-item">
+      <div>
+        <div class="label">Live Chat / AI Bot</div>
+        <div class="desc">Tidio Live Chat Engine Integration Hook</div>
+      </div>
+      <span class="badge badge-primary">Confirmed in Customizer</span>
+    </div>
+  </div>
+
+  <!-- 8. ISSUES FOUND -->
+  <h2 class="section-title">8. Identified Issues &amp; Recommended Actions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Identified Issue</th>
+        <th style="width: 15%;">Severity</th>
+        <th style="width: 60%;">Detailed Observation &amp; Recommended Remediation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hidden Legacy Demo Links in DOM</strong></td>
+        <td><span class="badge badge-danger">High Priority</span></td>
+        <td>A hidden <code>&lt;div&gt;</code> containing old stockroom theme links exists in the page footer from a previously imported template kit. <em>Action:</em> Delete residual posts/pages from the WordPress Trash to remove hidden DOM links.</td>
+      </tr>
+      <tr>
+        <td><strong>SEO Document Title Formatting</strong></td>
+        <td><span class="badge badge-warning">Medium</span></td>
+        <td>The live homepage title currently outputs as generic <code>Home - mchemconsultants</code> instead of the full keyword-rich title. <em>Action:</em> Update under <strong>Settings &gt; General</strong> or <strong>Appearance &gt; Customize &gt; SEO</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Aspen HYSYS Reference in Excerpt</strong></td>
+        <td><span class="badge badge-warning">Medium</span></td>
+        <td>Live service card 01 contains <code>01 ASPEN HYSYS / ASPEN PLUS</code> in its excerpt. The client requested this be normalized to <code>Simulation &amp; Modeling</code>. <em>Action:</em> Edit Service 01 under <strong>WP Admin &gt; Services</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Enforce Automatic HTTPS Redirection</strong></td>
+        <td><span class="badge badge-warning">Medium</span></td>
+        <td>Plain HTTP visits to <code>http://mchemconsultants.com</code> currently respond without an automatic 301 redirect to HTTPS. <em>Action:</em> Toggle "Force HTTPS" in Hostinger hPanel or add 301 rewrite rules in <code>.htaccess</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>SMTP Relay Configuration</strong></td>
+        <td><span class="badge badge-primary">Advisory</span></td>
+        <td>PHP mailer can occasionally encounter spam filters. <em>Action:</em> Activate the free <strong>WP Mail SMTP</strong> plugin connected to <code>mchemconsultants2@gmail.com</code> to guarantee 100% email delivery.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <span>MChem Consultants Technical Analysis Report &bull; Mehran University of Engineering and Technology, Jamshoro</span>
+    <span>Prepared by Mohammad Farooque &bull; Page 3 of 3</span>
+  </div>
+
+</body>
+</html>
